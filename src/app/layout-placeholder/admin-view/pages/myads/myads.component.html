@@ -1,0 +1,49 @@
+<section id="ads" class="services-mf mr-2 route">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="title-box text-center">
+          <h3 class="title-a">
+            My Ads
+          </h3>
+          <div class="line-mf"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4" *ngFor="let ads of adsList">
+        <div class="work-box">
+          <div class="work-img">
+            <a href="javascript:void(0)"><img src="http://placehold.it/960x600" alt="" class="img-fluid"></a>
+          </div>
+          <div class="work-content">
+            <div class="row text-center">
+              <div class="col-md-12">
+                <h2 class="w-title">{{ads?.title | truncate : 12}}</h2>
+                <p class="w-more" title="{{ads?.description}}">
+                  {{ads?.description| truncate : 40 : "..." }}
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-8 mt-2">
+                <div class="w-more">
+                    <h6 class="w-ctegory">Posted At : <span class="w-date">{{(ads?.created_at | date: 'dd/MM/yyyy') || 'Not Available'}}</span></h6>
+                </div>
+              </div>
+              <div class="col-sm-4 mt-2">
+                <div class="pull-right" style="font-size: 1rem">
+                  <a href="javascript:void(0)" (click)="editAds(ads)"> <i class="fa fa-pencil-square-o"></i> </a>
+                  <a href="javascript:void(0)" (click)="deleteAds(ads)"> <i class="fa fa-trash-o"></i> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="errorMessage" class="alert alert-warning" role="alert">
+      {{errorMessage}}
+    </div>
+  </div>
+</section>

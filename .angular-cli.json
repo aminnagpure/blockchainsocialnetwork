@@ -1,0 +1,78 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "social"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "styles.scss",
+        "../node_modules/font-awesome/css/font-awesome.min.css",
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "./assets/css/components/animate/animate.min.css",
+        "./assets/css/components/ionicons/ionicons.min.css",
+        "./assets/css/components/olw/olw.css",
+        "./assets/css/components/lightbox/css/lightbox.min.css",
+        "./assets/css/style-emerald-green.css"
+      ],
+      "scripts": [
+        "./assets/js/components/jquery/jquery-3.2.1.min.js",
+        "./assets/js/components/popper/popper.min.js",
+        "./assets/js/components/bootstrap/bootstrap.min.js",
+        "./assets/js/components/counterup/jquery.waypoints.min.js",
+        "./assets/js/components/counterup/jquery.counterup.js",
+        "./assets/js/components/owl-carousel/owl.carousel.min.js",
+        "./assets/js/components/typed/typed.min.js",
+        "./assets/js/components/easing/jquery.easing.min.js",
+        "./assets/js/components/lightbox/lightbox.min.js",
+        "./assets/js/app.js"
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "src/tsconfig.app.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "src/tsconfig.spec.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json",
+      "exclude": "**/node_modules/**"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "scss",
+    "component": {}
+  }
+}

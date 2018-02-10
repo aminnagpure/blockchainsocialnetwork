@@ -1,0 +1,44 @@
+<div class="card mt-4 col-md-6 offset-3">
+  <div class="card-header text-center">
+    <h4 class="text-success">Post Ad's</h4>
+    <small class="text-danger card-title" [hidden]="adsForm.valid">
+      * is required field!
+    </small>
+  </div>
+  <div class="card-body">
+    <div class="container">
+      <form [formGroup]="adsForm" novalidate (ngSubmit)="saveAd(adsForm.value, adsForm.valid)">
+        <div class="form-group row">
+          <label for="adsTitle" class="col-md-3 col-form-label-sm">Title: <sup>*</sup> </label>
+          <div class="col-md-9">
+            <input class="form-control form-control-sm" id="adsTitle" placeholder="Enter Title ..." formControlName="title">
+
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="adsDescription" class="col-md-3 col-form-label-sm">Description: </label>
+          <div class="col-md-9">
+            <textarea class="form-control form-control-sm" id="adsDescription" rows="3" placeholder="Enter Description ..." formControlName="description"></textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="selectCategory" class="col-md-3 col-form-label-sm">Category: </label>
+          <div class="col-md-9">
+            <select name="selectCategory" id="selectCategory" class="form-control form-control-sm" formControlName="category">
+              <option value="">Select Category</option>
+              <option value="bike">Bike</option>
+              <option value="mobile">Mobile</option>
+              <option value="laptop">Laptop</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="text-center col-md-6 offset-3">
+            <button type="submit" class="btn btn-sm btn-outline-primary" [disabled]="!adsForm.valid">Post Ad</button>
+            <button class="btn btn-sm btn-outline-danger" [routerLink]="['/myads']" >Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

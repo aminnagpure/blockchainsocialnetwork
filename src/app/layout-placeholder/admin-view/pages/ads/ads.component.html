@@ -1,0 +1,50 @@
+<section id="ads" class="services-mf route">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="title-box text-center">
+          <h3 class="title-a">
+            All Ads
+          </h3>
+          <div class="subtitle-a">
+            <a class="btn btn-sm btn-outline-success" [ngClass]="byCategory === 'all' ? 'active' : ''" (click)="byCategory = 'all'" > All</a>
+            <a class="btn btn-sm btn-outline-success" [ngClass]="byCategory === 'mobile' ? 'active' : ''" (click)="byCategory = 'mobile'"> Mobile's</a>
+            <a class="btn btn-sm btn-outline-success" [ngClass]="byCategory === 'bike' ? 'active' : ''" (click)="byCategory = 'bike'"> Bike's</a>
+            <a class="btn btn-sm btn-outline-success" [ngClass]="byCategory === 'laptop' ? 'active' : ''" (click)="byCategory = 'laptop'"> Laptop's</a>
+          </div>
+          <hr>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3" *ngFor="let ads of (adsList | cfilter: byCategory)">
+        <div class="work-box">
+          <div class="work-img">
+            <a href="javascript:void(0)"><img src="http://placehold.it/960x600" alt="" class="img-fluid"></a>
+          </div>
+          <div class="work-content">
+            <div class="row text-center">
+              <div class="col-md-12">
+                <h2 class="w-title">{{ads?.title | truncate : 12}}</h2>
+                <p class="w-more" title="{{ads?.description}}">
+                  {{ads?.description| truncate : 40 : "..." }}
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="w-more" style="text-align: end">
+                  <h6>Posted By : <small class="w-date">{{ads?.created_by || 'Not Available'}}</small></h6>
+                  <h6>@ <small class="w-date">{{(ads?.created_at | date: 'dd/MM/yyyy') || 'Not Available'}}</small></h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="errorMessage" class="alert alert-warning" role="alert">
+      {{errorMessage}}
+    </div>
+  </div>
+</section>

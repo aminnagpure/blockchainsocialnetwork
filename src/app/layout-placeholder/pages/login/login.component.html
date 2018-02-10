@@ -1,0 +1,39 @@
+<div class="container-fluid pt-5">
+    <div class="row">
+      <div class="col-md-4 offset-md-8">
+        <div class="service-box">
+          <div class="service-ico">
+            <span class="ico-circle"><i class="fa fa-sign-in" aria-hidden="true"></i></span>
+          </div>
+          <div class="service-content">
+            <h2 class="s-title">Login</h2>
+            <small class="text-danger" [hidden]="!errorMessage">
+              Error - {{errorMessage}}
+            </small>
+            <div class="s-description text-center">
+              <form [formGroup]="loginForm" novalidate (ngSubmit)="login(loginForm.value, loginForm.valid)" class="form-mf">
+                <div class="form-group">
+                  <input type="email" class="form-control" id="userName" aria-describedby="userName" placeholder="Enter email address..." formControlName="email">
+                  <!--<label for="userName"><i class="fa fa-user-circle-o"></i> Email address</label>-->
+                  <small class="text-danger" [hidden]="loginForm.controls.email.valid || (loginForm.controls.email.pristine)">
+                    Email is not valid and ex. <i>john@doe.com</i>.
+                  </small>
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" id="pwd" placeholder="Enter Password..." formControlName="password">
+                  <!--<label for="pwd">Password</label>-->
+                  <small class="text-danger" [hidden]="loginForm.controls.password.valid || (loginForm.controls.password.pristine)">
+                    Password should has to be of min 5 character.
+                  </small>
+                </div>
+                <div class="pl-2 text-center">
+                  <button type="submit" class="btn btn-lg btn-rounded btn-outline-success" [disabled]="!loginForm.valid">Log In</button>
+                  <button class="btn btn-lg btn-rounded btn-outline-primary" [routerLink]="['/register']">Sing Up</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

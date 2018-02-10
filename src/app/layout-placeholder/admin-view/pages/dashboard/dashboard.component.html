@@ -1,0 +1,115 @@
+<div class="row mt-4" >
+  <div class="col-md-6 col-md-offset-1">
+    <div class="card border-success p-3">
+      <div class="card-header text-center">
+        <h4 class="card-title">User Information</h4>
+      </div>
+      <div class="card-body">
+        <div class="container" *ngIf="userInfo; else loadinInfo">
+           <div class="row">
+             <div class="col-md-3">
+               <p>Name : </p>
+             </div>
+             <div class="col-md-9">
+               <p><strong>{{userInfo?.firstName}} {{userInfo?.lastName}}</strong></p>
+             </div>
+           </div>
+           <div class="row">
+             <div class="col-md-3">
+               <p>Email :</p>
+             </div>
+             <div class="col-md-9">
+               <strong>{{userInfo?.email}}</strong>
+             </div>
+           </div>
+           <div class="row">
+             <div class="col-md-3">
+               <p>Referral Link :</p>
+             </div>
+             <div class="col-md-9">
+               <p><code>{{location}}/?rfb={{userInfo?.uid}}</code></p>
+             </div>
+           </div>
+           <div class="row" *ngIf="!!userInfo?.referalName">
+             <div class="col-md-3">
+               <p>Refer by:</p>
+             </div>
+             <div class="col-md-9">
+               <p><strong>{{userInfo?.referalName}}</strong></p>
+             </div>
+           </div>
+           <div class="row">
+               <div class="m-auto text-center">
+                 <button class="btn btn-sm btn-outline-primary" (click)="memberDetail(userInfo)" >view profile</button>
+                 <button class="btn btn-sm btn-outline-success" (click)="updateInfo(userInfo)">update profile</button>
+               </div>
+           </div>
+         </div>
+        <ng-template class="container" #loadinInfo>
+            <div class="row">
+              <div class="col-md-12 text-warning text-center">
+                <p>Loading...</p>
+              </div>
+            </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-md-offset-1">
+    <div class="card border-success p-3">
+      <div class="card-header text-center">
+        <h4 class="card-title">Referral List</h4>
+      </div>
+      <div class="card-body pt-0 ">
+        <div class="table-responsive-sm" *ngIf="rMemList?.length > 0; else loadinInfo">
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">View</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let rMem of pagedMemList; let i = index">
+                  <th>{{i+1}}</th>
+                  <td>{{rMem?.firstName}} {{rMem?.lastName}}</td>
+                  <td>{{rMem?.email}}</td>
+                  <td><a href="javascript:void(0)" (click)="memberDetail(rMem)">view details</a></td>
+                </tr>
+              </tbody>
+            </table>
+          <!-- pager -->
+            <nav aria-label="Page navigation">
+            <ul class="pagination d-flex justify-content-center ">
+              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                <a class="page-link" (click)="setPage(pager.currentPage - 1)" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li class="page-item" *ngFor="let page of pager.pages">
+                <a class="page-link" (click)="setPage(page)">{{page}}</a>
+              </li>
+              <li>
+                <a class="page-link" (click)="setPage(pager.currentPage + 1)" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <ng-template class="container">
+          <div class="row">
+            <div class="col-md-12 text-warning text-center">
+              <p>Loading...</p>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

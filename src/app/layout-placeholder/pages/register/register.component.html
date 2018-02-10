@@ -1,0 +1,71 @@
+<div class="container-fluid pt-5">
+    <div class="row">
+      <div class="col-md-6 offset-md-6">
+        <div class="container">
+          <div class="service-box">
+            <div class="service-ico">
+              <span class="ico-circle"><i class="fa fa-user-plus" aria-hidden="true"></i></span>
+            </div>
+            <div class="service-content">
+              <h1 class="s-title">Register</h1>
+              <small class="text-danger" [hidden]="!errorMessage">
+                Error - {{errorMessage}}
+              </small>
+              <div class="s-description text-center">
+                <form [formGroup]="signUpForm" novalidate (ngSubmit)="register(signUpForm.value, signUpForm.valid)" class="form-mf">
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <input type="text" class="form-control" id="firstName" aria-describedby="firstName" placeholder="Enter your first name..." formControlName="firstName">
+                          <small class="text-danger" [hidden]="signUpForm.controls.firstName.valid || (signUpForm.controls.firstName.pristine)">
+                            Fist name is required
+                          </small>
+                        </div>
+                        <div class="col-md-6">
+                          <input type="text" class="form-control" id="lastName" aria-describedby="lastName" placeholder="Enter your last name..." formControlName="lastName">
+                          <small class="text-danger" [hidden]="signUpForm.controls.lastName.valid || (signUpForm.controls.lastName.pristine)">
+                            Last name is required
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col">
+                          <input type="email" class="form-control" id="userName" aria-describedby="userName" placeholder="Enter email address.." formControlName="email">
+                          <small class="text-danger" [hidden]="signUpForm.controls.email.valid || (signUpForm.controls.email.pristine)">
+                            Email is not valid and ex. <i>john@doe.com</i>.
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <input type="password" class="form-control" placeholder="Enter Password..." formControlName="password"
+                                 required validateEqual="confirmPassword" reverse="true" minlength="6" maxlength="10" #password>
+                          <small class="text-danger" [hidden]="signUpForm.controls.password.valid || (signUpForm.controls.password.pristine)">
+                            Password is not match
+                          </small>
+                        </div>
+                        <div class="col-md-6">
+                          <input type="password" class="form-control" placeholder="Enter Password again..." formControlName="confirmPassword"
+                                 required validateEqual="password" reverse="false" #confirmPassword>
+                          <small class="text-danger" [hidden]="signUpForm.controls.confirmPassword.valid || (signUpForm.controls.password.pristine)">
+                            Password is not match
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="pl-2 text-center">
+                      <button type="submit" class="btn btn-md btn-outline-success" [disabled]="!signUpForm.valid">Create User</button>
+                      <button class="btn btn-md btn-outline-primary" [routerLink]="['/login']">Log In</button>
+                    </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

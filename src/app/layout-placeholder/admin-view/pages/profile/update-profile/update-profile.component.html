@@ -1,0 +1,32 @@
+<div class="card mt-4 col-md-6 offset-3">
+  <div class="card-header text-center">
+    <h4 class="text-success">Update Profile Form</h4>
+    <small class="text-danger card-title" [hidden]="profileForm.valid">
+      * is required field!
+    </small>
+  </div>
+  <div class="card-body">
+    <div class="container">
+      <form [formGroup]="profileForm" novalidate (ngSubmit)="updateProfile(profileForm.value, profileForm.valid)">
+        <div class="form-group row">
+          <label for="profileFirstName" class="col-md-3 col-form-label-sm">First Name: <sup>*</sup> </label>
+          <div class="col-md-9">
+            <input class="form-control form-control-sm" id="profileFirstName" placeholder="Enter first name..." formControlName="firstName">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="profileLastName" class="col-md-3 col-form-label-sm">Last Name: <sup>*</sup> </label>
+          <div class="col-md-9">
+            <input class="form-control form-control-sm" id="profileLastName" placeholder="Enter last name..." formControlName="lastName">
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="text-center col-md-6 offset-3">
+            <button type="submit" class="btn btn-sm btn-outline-primary" [disabled]="!profileForm.valid" >Update</button>
+            <button class="btn btn-sm btn-outline-danger" [routerLink]="['/dashboard']" >Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
